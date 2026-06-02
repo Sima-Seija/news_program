@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>媒體風向監測儀表板</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
+    <style>
+        body { font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif; background: #f4f7f9; margin: 20px; }
+        .dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; max-width: 1400px; margin: 0 auto; }
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 6px 18px rgba(0,0,0,0.05); }
+        .full-row { grid-column: span 2; }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 40px; font-weight: 700; }
+        .chart { width: 100%; height: 450px; }
+        h3 { border-left: 6px solid #4a90e2; padding-left: 15px; color: #34495e; margin-top: 0; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+    <h1>新聞媒體帶風向分析儀表板</h1>
+    
+    <div class="dashboard">
+        <!-- 1. 時間趨勢 -->
+        <div class="card full-row">
+            <h3>帶風向程度趨勢分析</h3>
+            <div id="timeChart" class="chart"></div>
+        </div>
+
+        <!-- 2. 媒體對比 -->
+        <div class="card">
+            <h3>各媒體平均帶風向分值</h3>
+            <div id="mediaChart" class="chart"></div>
+        </div>
+
+        <!-- 3. 宣傳手法 -->
+        <div class="card">
+            <h3>熱門宣傳手法分佈</h3>
+            <div id="techChart" class="chart"></div>
+        </div>
+
+        <!-- 4. 關鍵字雲 -->
+        <div class="card full-row">
+            <h3>宣傳片段熱門關鍵字雲</h3>
+            <div id="wordCloudChart" class="chart" style="height: 600px;"></div>
+        </div>
+    </div>
+
+    <script>
+        // 通用渲染器
+        function render(id, option) {
+            const chart = echarts.init(document.getElementById(id));
+            chart.setOption(option);
+            window.addEventListener('resize', () => chart.resize());
+        }
+
+        // 1. 時間趨勢圖
+        fetch('/api/time_series').then(res => res.json()).then(data => {
+            render('timeChart', {
+                tooltip: { trigger: 'axis' },
+                grid: { bottom: 80 },
+                xAxis: { type: 'category', data: data.map(d => d.date) },
+                yAxis: { type: 'value', name: '平均風向值' },
+                dataZoom: [{ type: 'slider', start: 0, end: 100 }],
+                series: [{
+                    name: '平均值',
+                    data: data.map(d => d.avg_spin),
+                    type: 'line',
+                    smooth: true,
+                    symbolSize: 8,
+                    areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: 'rgba(145,204,117,0.5)' },
+                        { offset: 1, color: 'rgba(145,204,117,0)' }
+                    ])},
+                    itemStyle: { color: '#91cc75', width: 3 }
+                }]
+            });
+        });
+
+        // 2. 媒體柱狀圖
+        fetch('/api/media_stats').then(res => res.json()).then(data => {
+            render('mediaChart', {
+                tooltip: { trigger: 'axis' },
+                xAxis: { type: 'category', data: data.map(d => d.media_source) },
+                yAxis: { type: 'value' },
+                series: [{ 
+                    type: 'bar', 
+                    data: data.map(d => d.avg_spin),
+                    itemStyle: { color: '#5470c6', borderRadius: [5, 5, 0, 0] }
+                }]
+            });
+        });
+
+        // 3. 手法圓餅圖
+        fetch('/api/technique_stats').then(res => res.json()).then(data => {
+            render('techChart', {
+                tooltip: { trigger: 'item' },
+                legend: { top: 'bottom' },
+                series: [{ 
+                    type: 'pie', 
+                    radius: ['40%', '70%'],
+                    data: data.map(d => ({ name: '手法 ' + d.technique_id, value: d.count })),
+                    emphasis: { itemStyle: { shadowBlur: 10, shadowColor: 'rgba(0,0,0,0.5)' } }
+                }]
+            });
+        });
+
+        // 4. 文字雲
+        fetch('/api/keywords').then(res => res.json()).then(data => {
+            if (data.length === 0) return;
+            render('wordCloudChart', {
+                series: [{
+                    type: 'wordCloud',
+                    gridSize: 15,
+                    sizeRange: [20, 100],
+                    rotationRange: [0, 0],
+                    shape: 'circle',
+                    textStyle: {
+                        color: () => `rgb(${[
+                            Math.round(Math.random() * 160),
+                            Math.round(Math.random() * 160),
+                            Math.round(Math.random() * 160)
+                        ].join(',')})`
+                    },
+                    data: data
+                }]
+            });
+        });
+    </script>
+</body>
+</html>
