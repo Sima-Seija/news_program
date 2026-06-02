@@ -1,0 +1,175 @@
+{
+  "SemEval-2023_Task3_Persuasion_Techniques": {
+    "description": "包含 SemEval-2023 任務 3 所採用的兩層次說服手法分類，共六個主要類別與二十三種細粒度手法。",
+    "categories": [
+      {
+        "coarse_grained_category": "攻擊聲譽 (Attack on Reputation, AR)",
+        "techniques": [
+          {
+            "id": 1,
+            "chinese_name": "貼標籤或辱罵",
+            "english_name": "Name Calling or Labeling",
+            "definition": "使用帶有褒貶意的標籤影響受眾對目標的看法。"
+          },
+          {
+            "id": 2,
+            "chinese_name": "關聯定罪",
+            "english_name": "Guilt by Association",
+            "definition": "將對手與受眾厭惡的團體或概念聯繫來攻擊其形象。"
+          },
+          {
+            "id": 3,
+            "chinese_name": "製造疑慮",
+            "english_name": "Casting Doubt / Doubt",
+            "definition": "質疑某人或某事的品格或屬性以削弱其可信度。"
+          },
+          {
+            "id": 4,
+            "chinese_name": "訴諸虛偽",
+            "english_name": "Appeal to Hypocrisy",
+            "definition": "指控目標虛偽或前後不一致以攻擊其聲譽。"
+          },
+          {
+            "id": 5,
+            "chinese_name": "質疑聲譽",
+            "english_name": "Questioning the Reputation",
+            "definition": "提出負面主張以破壞目標的品格或道德地位。"
+          }
+        ]
+      },
+      {
+        "coarse_grained_category": "合理化 (Justification, J)",
+        "techniques": [
+          {
+            "id": 6,
+            "chinese_name": "搖旗吶喊",
+            "english_name": "Flag Waiving",
+            "definition": "利用集體自豪感或利益（如國家、民族）支持某立場。"
+          },
+          {
+            "id": 7,
+            "chinese_name": "訴諸權威",
+            "english_name": "Appeal to Authority",
+            "definition": "憑藉被認為是權威者的支持使論點更具可信度。"
+          },
+          {
+            "id": 8,
+            "chinese_name": "訴諸大眾",
+            "english_name": "Appeal to Popularity",
+            "definition": "以「大家都同意」作為論點正當化的依據。"
+          },
+          {
+            "id": 9,
+            "chinese_name": "訴諸價值觀",
+            "english_name": "Appeal to Values",
+            "definition": "將觀點與受眾認同的價值觀連結以提升接受度。"
+          },
+          {
+            "id": 10,
+            "chinese_name": "訴諸恐懼或偏見",
+            "english_name": "Appeal to Fear, Prejudice",
+            "definition": "透過激起恐懼或偏見推動或否定某立場。"
+          }
+        ]
+      },
+      {
+        "coarse_grained_category": "簡化 (Simplification)",
+        "techniques": [
+          {
+            "id": 11,
+            "chinese_name": "因果過度簡化",
+            "english_name": "Causal Oversimplification",
+            "definition": "用單一原因解釋複雜問題。"
+          },
+          {
+            "id": 12,
+            "chinese_name": "虛假困境／無選擇",
+            "english_name": "False Dilemma, No Choice",
+            "definition": "僅提出兩種選擇作為唯一可能性。"
+          },
+          {
+            "id": 13,
+            "chinese_name": "結果過度簡化",
+            "english_name": "Consequential Oversimplification",
+            "definition": "過度簡化行動或事件的後果。"
+          }
+        ]
+      },
+      {
+        "coarse_grained_category": "分散注意力 (Distraction, D)",
+        "techniques": [
+          {
+            "id": 14,
+            "chinese_name": "稻草人謬誤",
+            "english_name": "Strawman",
+            "definition": "將對手論點歪曲成容易駁斥的版本再反駁。"
+          },
+          {
+            "id": 15,
+            "chinese_name": "轉移視線",
+            "english_name": "Red Herring",
+            "definition": "引入不相關內容以轉移焦點。"
+          },
+          {
+            "id": 16,
+            "chinese_name": "那又怎麼說／比爛",
+            "english_name": "Whataboutism",
+            "definition": "以指責對手虛偽而非直接回應論點的方式反駁。"
+          }
+        ]
+      },
+      {
+        "coarse_grained_category": "呼籲 (Call, C)",
+        "techniques": [
+          {
+            "id": 17,
+            "chinese_name": "口號",
+            "english_name": "Slogans",
+            "definition": "使用簡潔有力的短語以激發情感或行動。"
+          },
+          {
+            "id": 18,
+            "chinese_name": "對話終結者",
+            "english_name": "Conversation Killer",
+            "definition": "使用阻止批判性思考或討論的語句。"
+          },
+          {
+            "id": 19,
+            "chinese_name": "訴諸時間",
+            "english_name": "Appeal to Time",
+            "definition": "以「時機成熟」為理由推動行動。"
+          }
+        ]
+      },
+      {
+        "coarse_grained_category": "操縱性措辭 (Manipulative Wording, MW)",
+        "techniques": [
+          {
+            "id": 20,
+            "chinese_name": "帶有情感色彩的語言",
+            "english_name": "Loaded Language",
+            "definition": "使用情感化字詞影響受眾情緒與判斷。"
+          },
+          {
+            "id": 21,
+            "chinese_name": "混淆／含糊／困惑",
+            "english_name": "Obfuscation, Intentional Vagueness, Confusion",
+            "definition": "使用模稜兩可或含糊語言混淆受眾。"
+          },
+          {
+            "id": 22,
+            "chinese_name": "誇大或縮小",
+            "english_name": "Exaggeration or Minimisation",
+            "definition": "誇張或弱化事實以改變受眾感知。"
+          },
+          {
+            "id": 23,
+            "chinese_name": "重複",
+            "english_name": "Repetition",
+            "definition": "重複特定語句以強化印象與說服力。"
+          }
+        ]
+      }
+    ]
+  }
+}

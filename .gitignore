@@ -1,0 +1,56 @@
+# 環境變數文件 - 包含敏感信息
+.env
+.env.local
+.env.*.local
+
+# 虛擬環境
+.venv/
+.venv-1/
+venv/
+ENV/
+env/
+
+# Python 相關
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# IDE 相關
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 本地數據和日誌 - 不應提交的爬蟲和分析結果
+news_crawler-main/raw_articles/
+news_crawler-main/data/
+news_crawler-main/.crawl_state.json
+pipeline/analysis_results/
+pipeline/error_logs/
+media_dashboard/upload/
+media_dashboard/uploads/
+media_dashboard/data/gpt.json
+
+# 臨時文件
+*.tmp
+*.temp
+*.log
+.DS_Store
+Thumbs.db
+
+# 資料庫備份
+*.sql
+*.sql.gz
+*.dump
+
+# 編輯器備份
+*.bak
+*.swp
+*~
